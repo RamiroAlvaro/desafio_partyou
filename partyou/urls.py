@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from partyou.core.views import HomePageView
+from partyou.core.views import HomePageView, create_product, list_products
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="home"),
+    path('lista_produtos', list_products, name='list_products'),
+    path('cadastro_produto', create_product, name='create_product'),
     path('admin/', admin.site.urls),
 ]
