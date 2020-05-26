@@ -1,13 +1,28 @@
 import pytest
+from django.urls import reverse
 from model_bakery import baker
 
 from partyou.core.models import Product
-from partyou.django_assertions import assert_true, assert_equal, assert_false
+from partyou.django_assertions import assert_true, assert_equal, assert_false, assert_template_used
 
 
 @pytest.fixture
 def product(db):
     return baker.make(Product)
+
+
+@pytest.fixture
+def resp(client):
+    resp = client.get(reverse('create_product'))
+    return resp
+
+
+def test_create_product_status_code(resp):
+    assert_equal(resp.status_code, 200)
+
+
+def test_create_product_template(resp):
+    assert_template_used(resp, 'core/create_product.html')
 
 
 def test_create(product: Product):
