@@ -3,45 +3,29 @@
 {% block title %}Partyou - Desafio{% endblock title %}
 
 {% block content %}
-    <div class="col-md-12">
-        <h4>Partyou - Desafio</h4>
 
-        <form method="POST" class="post-form" action="{% url 'create_product' %}">
-            {% csrf_token %}
-            <div class="container">
-                <br>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label"></label>
-                    <div class="col-sm-4">
-                        <h3>Alta Produto</h3>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nome:</label>
-                    <div class="col-sm-4">
-                        {{ form.name }}
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Descrição:</label>
-                    <div class="col-sm-4">
-                        {{ form.description }}
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Preço:</label>
-                    <div class="col-sm-4">
-                        {{ form.price }}
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label"></label>
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    </div>
+    <main role="main">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-md-9 mx-auto mb-5">
+                    <form class="post-form" action="{% url 'create_product' %}" method="POST">{% csrf_token %}
+                        <h3 class="mb-4">Cadastro produto</h3>
+                        <label class="col-sm-2 col-form-label">Nome:</label>
+                        <p>
+                            {{ form.name }}
+                        </p>
+                        <label class="col-sm-2 col-form-label">Descrição:</label>
+                        <p>
+                            {{ form.description }}
+                        </p>
+                        <label class="col-sm-2 col-form-label">Preço:</label>
+                        <p>
+                            {{ form.price }}
+                        </p>
+                        <p><input type="submit" class="btn btn-primary btn-block" value="Cadastrar"></p>
+                    </form>
                 </div>
             </div>
-        </form>
-    </div>
-{% endblock content %}
+        </div>
+    </main>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from django.views.generic.base import TemplateView
 
 from partyou.core.forms import ProductForm
-from partyou.core.models import Product
+from partyou.core.models import Product, Order
 
 
 class HomePageView(TemplateView):
@@ -30,3 +30,8 @@ def create_product(request):
 def list_products(request):
     products = Product.objects.all()
     return render(request, "core/list_products.html", {'products': products})
+
+
+def list_orders(request):
+    orders = Order.objects.all()
+    return render(request, "core/list_orders.html", {'orders': orders})
