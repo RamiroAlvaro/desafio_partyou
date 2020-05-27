@@ -52,5 +52,5 @@ class OrderProduct(models.Model):
         unique_together = ("order", "product")
 
     def __str__(self):
-        return f"Número do pedido: {self.order} | Produto: {self.product} | Quantidade: {self.quantity} | " \
-               f"Preço: R${self.price} "
+        return f"{self.order} | Produto: {self.product} | Quantidade: {self.quantity} | " \
+               f"Preço: R${self.price} | Cliente: {self.order.user.email}"
