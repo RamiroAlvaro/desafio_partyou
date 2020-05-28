@@ -6,12 +6,14 @@ https://desafiopartyou.herokuapp.com
 
 ## Como desenvolver?
 
-1. Clone o repositório.
+1. Clone o repositório
 2. Crie um virtualenv com Python 3.8
-3. Ative o virtualenv.
+3. Ative o virtualenv
 4. Instale as dependências.
 5. Configure a instância com o .env
-6. Execute os testes.
+6. Desativar ou virtualenv
+7. Ative o virtualenv
+8. Execute os testes
 
 ```console
 git clone https://github.com/RamiroAlvaro/desafio_partyou.git desafio_partyou
@@ -20,6 +22,8 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
 cp contrib/env-partyou .env
+deactivate
+source .venv/bin/activate
 pytest partyou --cov=partyou
 ```
 
@@ -30,5 +34,5 @@ pytest partyou --cov=partyou
 ```console
 python manage.py migrate
 python manage.py createsuperuser
-python manager.py runserver
+python manage.py runserver
 ```
