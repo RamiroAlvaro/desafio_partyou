@@ -26,7 +26,8 @@ pytest partyou --cov=partyou
 1. Faça as migrações
 2. Crie um usuário
 3. Rode o servidor local
-```
+
+```console
 python manage.py migrate
 python manage.py createsuperuser
 python manager.py runserver
