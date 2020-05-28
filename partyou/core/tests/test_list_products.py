@@ -12,8 +12,8 @@ def product(db):
 
 
 @pytest.fixture
-def resp(client, product):
-    resp = client.get(reverse('list_products'))
+def resp(client_user_admin, product):
+    resp = client_user_admin.get(reverse('list_products'))
     return resp
 
 

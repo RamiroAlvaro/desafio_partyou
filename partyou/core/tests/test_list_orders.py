@@ -12,8 +12,8 @@ def order(db):
 
 
 @pytest.fixture
-def resp(client, order):
-    resp = client.get(reverse('list_orders'))
+def resp(client_user_admin, order, user_admin):
+    resp = client_user_admin.get(reverse('list_orders'))
     return resp
 
 
