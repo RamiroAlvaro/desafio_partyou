@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from partyou.core.views import HomePageView, create_product, list_products, list_orders
 
@@ -24,4 +24,7 @@ urlpatterns = [
     path('cadastro_produto', create_product, name='create_product'),
     path('lista_pedidos', list_orders, name='list_orders'),
     path('admin/', admin.site.urls),
+    # Paths de Auth
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('partyou.registration.urls')),
 ]
