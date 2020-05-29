@@ -1,0 +1,48 @@
+{% extends "core/base.html" %}
+
+{% block title %}Partyou - Desafio{% endblock title %}
+
+{% block content %}
+
+    <main role="main">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-md-12 mx-auto mb-5">
+                    <form action="{% url 'update_order' order.id %}" method="POST">{% csrf_token %}
+                        <h3 class="mb-4">Pedido de {{ order.user.email }}</h3>
+                        <h4>Estado atual: {{ order.get_status_display | upper }}</h4>
+                        <p>
+                            <select class="form-control" id="status" name="status">
+					            {% for value, text in order.STATUS %}
+					            <option value="{{ value }}">{{ text }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+                        <p><input type="submit" class="btn btn-primary btn-block" value="Atualizar estado do pedido"></p>
+                    </form>
+                    <div class="table-responsive">
+                        <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
+                            <thead>
+                            <th>Pedido número</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                            </thead>
+                            <tbody>
+                            {% for order_product in order_products %}
+                                <tr>
+                                    <td>{{ order_product.order.id }}</td>
+                                    <td>{{ order_product.product }}</td>
+                                    <td>{{ order_product.quantity }}</td>
+                                    <td>{{ order_product.price }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

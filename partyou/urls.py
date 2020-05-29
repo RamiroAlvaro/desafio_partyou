@@ -16,13 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from partyou.core.views import HomePageView, create_product, list_products, list_orders
+from partyou.core.views import HomePageView, create_product, list_products, list_orders, order_detail, update_order
 
 urlpatterns = [
     path('', HomePageView.as_view(), name="home"),
     path('lista_produtos', list_products, name='list_products'),
     path('cadastro_produto', create_product, name='create_product'),
     path('lista_pedidos', list_orders, name='list_orders'),
+    path('pedido_detalhe/<int:order_id>', order_detail, name='order_detail'),
+    path('pedido_atualizar/<int:order_id>', update_order, name='update_order'),
     path('admin/', admin.site.urls),
     # Paths de Auth
     path('accounts/', include('django.contrib.auth.urls')),
