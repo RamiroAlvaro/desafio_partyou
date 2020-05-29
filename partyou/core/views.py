@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.text import slugify
 from django.views.generic.base import TemplateView
 
 from partyou.core.forms import ProductForm
-from partyou.core.models import Product, Order
+from partyou.core.models import Product, Order, OrderProduct
 
 
 class HomePageView(TemplateView):
@@ -39,3 +39,20 @@ def list_products(request):
 def list_orders(request):
     orders = Order.objects.all()
     return render(request, "core/list_orders.html", {'orders': orders})
+
+
+@permission_required('is_staff')
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    order_products = OrderProduct.objects.select_related('order').filter(order_id=order_id)
+    return render(request, "core/order_detail.html", {'order_products': order_products, 'order': order})
+
+
+@permission_required('is_staff')
+def update_order(request, order_id):
+    if request.method == "POST":
+        order = get_object_or_404(Order, id=order_id)
+        order.status = request.POST['status']
+        order.save()
+
+    return redirect(reverse('list_orders'))

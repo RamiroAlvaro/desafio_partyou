@@ -22,7 +22,7 @@
                                     <td>{{ order.id }}</td>
                                     <td>{{ order.user.email }}</td>
                                     <td>{{ order.get_status_display }}</td>
-                                    <td><a href="{% url 'list_products' %}">Detalhe</a></td>
+                                    <td><a href="{% url 'order_detail' order.id %}">Detalhe</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
